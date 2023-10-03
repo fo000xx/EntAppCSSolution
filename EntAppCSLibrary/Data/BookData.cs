@@ -13,7 +13,7 @@ namespace EntAppCSLibrary.Data
             _sql = sql;
         }
 
-        public async Task InsertBook(BookModel data)
+        public async Task InsertBookAsync(BookModel data)
         {
             DynamicParameters p = new();
             p.Add("@BookId", dbType: DbType.Int32, direction: ParameterDirection.Output);
@@ -24,7 +24,7 @@ namespace EntAppCSLibrary.Data
             p.Add("@Rating", data.Rating);
             p.Add("@IsRead", data.IsRead);
 
-            await _sql.SaveData("dbo.spUpsert_Book", p);
+            await _sql.SaveDataAsync("dbo.spUpsert_Book", p);
 
             int bookId = p.Get<int>("@BookId");
         }
