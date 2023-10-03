@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{b3bff941-e304-4ff6-9937-eaf2e606904f}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -56,5 +56,21 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="StoredProcedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Book.sql" />
+    <Build Include="Tables\Screen.sql" />
+    <Build Include="Tables\Game.sql" />
+    <Build Include="StoredProcedures\spUpsert_Book.sql" />
+    <Build Include="StoredProcedures\spUpsert_Screen.sql" />
+    <Build Include="StoredProcedures\spUpsert_Game.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="EntAppCSSolutionDB.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EntAppCSSolutionDB.publish.xml" />
   </ItemGroup>
 </Project>
