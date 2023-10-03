@@ -3,7 +3,7 @@
 	@Title nvarchar(50),
 	@ScreenType nvarchar(50),
 	@Rating int,
-	@isWatched bit
+	@IsWatched bit
 
 AS
 begin
@@ -14,14 +14,14 @@ begin
 			Title = @Title,
 			ScreenType = @ScreenType,
 			Rating = @Rating,
-			isWatched = @isWatched
+			IsWatched = @IsWatched
 		where CONCAT(Title, ScreenType) = CONCAT(@Title, @ScreenType);
 		select @ScreenId = Id from Screen where CONCAT(Title, ScreenType) = CONCAT(@Title, @ScreenType);
 	end
 	else
 	begin
-		insert into Screen (Title, ScreenType, Rating, isWatched)
-		values (@Title, @ScreenType, @Rating, @isWatched);
+		insert into Screen (Title, ScreenType, Rating, IsWatched)
+		values (@Title, @ScreenType, @Rating, @IsWatched);
 		select @ScreenId = SCOPE_IDENTITY();
 	end
 

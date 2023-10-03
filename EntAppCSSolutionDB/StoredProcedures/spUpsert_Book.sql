@@ -5,7 +5,7 @@
 	@Series nvarchar(50),
 	@Genre nvarchar(50),
 	@Rating int,
-	@isRead bit
+	@IsRead bit
 
 AS
 begin
@@ -18,14 +18,14 @@ begin
 			Series = @Series,
 			Genre = @Genre,
 			Rating = @Rating,
-			isRead = @isRead
+			IsRead = @IsRead
 		where CONCAT(Title, Author) = CONCAT(@Title, @Author);
 		select @BookId = Id from Book where CONCAT(Title, Author) = CONCAT(@Title, @Author);
 	end
 	else
 	begin
-		insert into Book (Title, Author, Series, Genre, Rating, isRead)
-		values (@Title, @Author, @Series, @Genre, @Rating, @isRead);
+		insert into Book (Title, Author, Series, Genre, Rating, IsRead)
+		values (@Title, @Author, @Series, @Genre, @Rating, @IsRead);
 		select @BookId = SCOPE_IDENTITY();
 	end
 
