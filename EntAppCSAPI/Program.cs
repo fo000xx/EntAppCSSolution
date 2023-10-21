@@ -9,6 +9,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddSingleton<IBookData, BookData>();
+builder.Services.AddSingleton<IGameData, GameData>();
+builder.Services.AddSingleton<IScreenData, ScreenData>();
+
 
 var app = builder.Build();
 
@@ -24,6 +27,16 @@ app.UseHttpsRedirection();
 app.MapPost("/book", async (IBookData db, BookModel data) =>
 {
     await db.InsertBookAsync(data);
+});
+
+app.MapPost("/game", async (IGameData db, GameModel data) =>
+{
+    await db.InsertGameAsync(data);
+});
+
+app.MapPost("/screen", async (IScreenData db, ScreenModel data) =>
+{
+    await db.InsertScreenAsync(data);
 });
 
 app.Run();
