@@ -13,13 +13,31 @@ namespace EntAppCSLibrary.Data
             _config = config;
         }
 
+        public SqlConnection Connection { get; private set; }
+
+        public void OpenConnection(string connectionStringName = "Default")
+        {
+            Connection = new SqlConnection(_config.GetConnectionString(connectionStringName));
+            Connection.Open();
+        }
+
+        public void CloseConnection()
+        {
+            Connection.Close();
+        }
+
         public async Task SaveDataAsync(string storedProcedure,
                              DynamicParameters data,
                              string connectionStringName = "Default")
         {
-            using var connection = new SqlConnection(_config.GetConnectionString(connectionStringName));
+            if (Connection == null || Connection.State != System.Data.ConnectionState.Open)
+            {
+                throw new InvalidOperationException("Connection is not open. Call OpenConnection()");
+            }
+            
+            //using var connection = new SqlConnection(_config.GetConnectionString(connectionStringName));
 
-            await connection.ExecuteAsync(storedProcedure,
+            await Connection.ExecuteAsync(storedProcedure,
                                             data,
                                             commandType: System.Data.CommandType.StoredProcedure);
         }

@@ -66,6 +66,7 @@
     <Build Include="StoredProcedures\spUpsert_Book.sql" />
     <Build Include="StoredProcedures\spUpsert_Screen.sql" />
     <Build Include="StoredProcedures\spUpsert_Game.sql" />
+    <Build Include="StoredProcedures\spSelect_Book.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="EntAppCSSolutionDB.refactorlog" />
